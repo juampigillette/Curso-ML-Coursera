@@ -60,3 +60,33 @@ def gradient_descent(x, y, w_inicial, b_inicial, alpha, num_iters, cost_function
             p_history.append([w,b])
 
     return w, b, J_history, p_history #return w and J,w history for graphing
+
+#Pruebas: 
+
+x_train = np.array([1.0, 2.0, 3.0 , 4.0, 5.0, 6.0, 7.0 , 8.0, 9.0])   #features
+y_train = np.array([300.0, 500.0, 700.0 , 850.0 , 1000.0, 1250.0 , 1350.0 , 1500.0 , 1700.0])   #target value
+
+
+w_inicial = 0
+b_inicial = 0
+# configuracion de gradiente descendente dadas por el curso
+iterations = 10000
+alpha = 1.0e-2
+
+# run gradient descent
+w_final, b_final, J_hist, p_hist = gradient_descent(x_train ,y_train, w_inicial, b_inicial, alpha, 
+                                                    iterations, compute_cost, compute_gradient)
+
+for i in range (0,10000,1000): #para ver la progresion de J
+  print(f"valor J en iteracion {i} : {J_hist[i]:0.2e}")
+
+print(f"valor J final {J_hist[iterations-1]:0.2e}") #para ver la progresion de J
+print ("*"*100)
+print(f"(w,b) found by gradient descent: ({w_final:8.4f},{b_final:8.4f})")
+
+plt.scatter(x_train, y_train, marker = "x", c="b")
+plt.plot(x_train, funcion_lineal(x_train,w_final,b_final), c = "r", label = "regresion lineal")
+plt.title("Ejemplo de juampi")
+plt.ylabel("titulo de las y")
+plt.xlabel("titulo de las x")
+plt.show()
