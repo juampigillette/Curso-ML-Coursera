@@ -96,7 +96,7 @@ def gradient_descent(X, y, w_in, b_in, cost_function, gradient_function, alpha, 
 
 
     Argumentos:
-      X (ndarray (m,n)): Data, m examples with n features
+      X (ndarray (m,n)): Data, m ejemplos con n features
       y (ndarray (m,)) : target values
       w_in (ndarray (n,)) : parametros w modelo iniciales
       b_in (scalar)       : paramtro b modelo inicial
@@ -124,7 +124,7 @@ def gradient_descent(X, y, w_in, b_in, cost_function, gradient_function, alpha, 
         w = w - alpha * dj_dw               
         b = b - alpha * dj_db               
 
-    return w, b, J_history #return final w,b and J history for graphing
+    return w, b #devuelve w,b finales
 
 
 #Prueba:
@@ -139,14 +139,15 @@ y_train = np.array([460, 232, 178]) #Valores de output para cada ejemplo
 b_init = 785.1811367994083
 w_init = np.array([ 0.39133535, 18.75376741, -53.36032453, -26.42131618])
 
-# initialize parameters
+# inicializacion de parametros
 initial_w = np.zeros_like(w_init)
 initial_b = 0.
 # some gradient descent settings
 iterations = 1000
 alpha = 5.0e-7
+
 # run gradient descent 
-w_final, b_final, J_hist = gradient_descent(X_train, y_train, initial_w, initial_b,
+w_final, b_final = gradient_descent(X_train, y_train, initial_w, initial_b,
                                                     compute_cost, compute_gradient, 
                                                     alpha, iterations)
 
